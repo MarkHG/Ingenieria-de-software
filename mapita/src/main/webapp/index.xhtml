@@ -10,7 +10,14 @@
             <title>Facelet Title</title>
         </h:head>
         <h:body>
-            Hello from Facelets
+            
+                <p:inputText id = "nombre" value="#{agregarUsuario.nombre}" placeholder = "Nombre"/>
+                <p:inputText id = "correo" value="#{agregarUsuario.correo}" placeholder = "Correo"/>
+                <p:password id = "contresenia" value="#{agregarUsuario.contresenia}" placeholder = "Contrasenia"/>
+                <p:calendar id = "fechanacimento" value="#{agregarUsuario.fechanacimiento}" placeholder = "fecha"/> 
+                <p:commandButton action = "#{agregarUsuario.agregaUsuario()}"/>
+            
+
         </h:body>
     </f:view>
 </html>

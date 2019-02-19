@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,7 +16,7 @@ import org.hibernate.Transaction;
  *
  * @author marco
  */
-public abstract class AbstractDAO {
+public abstract class AbstractDAO <T> {
     
     protected SessionFactory sessionFactory;
     
@@ -42,9 +43,41 @@ public abstract class AbstractDAO {
     }
     
     
-    protected void update(Object obj){}
+    protected void update(Object obj){
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            session.update(obj);
+            tx.commit();
+        }catch (HibernateException ex){
+            if (tx != null){
+                tx.rollback();
+            }
+            ex.printStackTrace();
+            
+        } finally {
+            session.close();
+        }
+    }
     
-    protected void delate(Object objt){}
+    protected void delete(Object objt){
+         Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            session.delete(objt);
+            tx.commit();
+        }catch (HibernateException ex){
+            if (tx != null){
+                tx.rollback();
+            }
+            ex.printStackTrace();
+            
+        } finally {
+            session.close();
+        } 
+    }
     
     protected Object find(Class clazz, int id){
         Object objt = null;
@@ -65,6 +98,23 @@ public abstract class AbstractDAO {
         }
         return objt;
     }
-    
-    //protected List<T> findAll(Class clazz){}
+    protected List<T> findAll(Class clazz){
+        List<T> obj = null;
+        Session session = this.sessionFactory.getCurrentSession();
+        Transaction tx = null;
+        try{
+            tx= session.beginTransaction();
+            String hql = "From"+clazz;
+            Query query = session.createQuery(hql);
+            obj = (List<T>)query.list();
+            tx.commit();
+        }catch(HibernateException ex){
+            if(tx!= null){
+                tx.rollback();
+            }
+        }finally{
+            session.close();
+        }
+        return obj;
+    } 
 }
