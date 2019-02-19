@@ -66,5 +66,5 @@ public abstract class AbstractDAO {
         return objt;
     }
     
-    protected List<T> findAll(Class clazz){}
+    //protected List<T> findAll(Class clazz){}
 }
