@@ -10,13 +10,13 @@
             <title>Facelet Title</title>
         </h:head>
         <h:body>
-            
-                <p:inputText id = "nombre" value="#{agregarUsuario.nombre}" placeholder = "Nombre"/>
-                <p:inputText id = "correo" value="#{agregarUsuario.correo}" placeholder = "Correo"/>
-                <p:password id = "contresenia" value="#{agregarUsuario.contresenia}" placeholder = "Contrasenia"/>
-                <p:calendar id = "fechanacimento" value="#{agregarUsuario.fechanacimiento}" placeholder = "fecha"/> 
-                <p:commandButton action = "#{agregarUsuario.agregaUsuario()}"/>
-            
+            <h:form>
+                <p:inputText id="nombre" value="#{agregaUsuario.nombre}" placeholder="Nombre"/> <br/>
+                <p:inputText id="correo" value="#{agregaUsuario.correo}" placeholder="Correo"/> <br/>
+                <p:password id="constrasenia" value="#{agregaUsuario.contrasenia}" placeholder="Contrasenia"/> <br/>
+                <p:calendar id="fechanacimiento" value="#{agregaUsuario.fechanacimiento}" placeholder="Fecha de nacimiento"/> <br/>
+                <p:commandButton action="#{agregaUsuario.agregaUsuario()}" value="Registrame" ajax="false" />
+            </h:form>
 
         </h:body>
     </f:view>

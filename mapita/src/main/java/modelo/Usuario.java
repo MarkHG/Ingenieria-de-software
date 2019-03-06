@@ -62,6 +62,10 @@ public class Usuario  implements java.io.Serializable {
     public void setFechanacimiento(Date fechanacimiento) {
         this.fechanacimiento = fechanacimiento;
     }
+    public void setContrasenia(String contrasenia) {
+        this.contresenia = contresenia;
+    }
+
 
 
 
